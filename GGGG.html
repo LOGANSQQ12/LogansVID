@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>LogansVID · прямые ссылки</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #0c0f15;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            position: relative;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* Контейнер для фигур */
+        .figures {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Тонкие красные палочки */
+        .red-line {
+            position: absolute;
+            background: #ff4d4d;
+            box-shadow: 0 0 8px #ff4d4d, 0 0 15px rgba(255, 77, 77, 0.2);
+            opacity: 0.25;
+            animation: moveLine 8s infinite linear;
+        }
+
+        .line-vertical {
+            width: 1px;
+            height: 100%;
+            top: 0;
+        }
+
+        .line-horizontal {
+            height: 1px;
+            width: 100%;
+            left: 0;
+        }
+
+        .line-1 { left: 5%; animation-duration: 7s; background: #ff5e5e; }
+        .line-2 { left: 15%; animation-duration: 9s; background: #ff3b3b; }
+        .line-3 { left: 25%; animation-duration: 6s; background: #ff6b6b; }
+        .line-4 { left: 35%; animation-duration: 8.5s; background: #ff4f4f; }
+        .line-5 { left: 45%; animation-duration: 7.5s; background: #ff5a5a; }
+        .line-6 { left: 55%; animation-duration: 9.5s; background: #ff4040; }
+        .line-7 { left: 65%; animation-duration: 6.5s; background: #ff7575; }
+        .line-8 { left: 75%; animation-duration: 8s; background: #ff4545; }
+        .line-9 { left: 85%; animation-duration: 7s; background: #ff6363; }
+        .line-10 { left: 95%; animation-duration: 9s; background: #ff3d3d; }
+
+        .line-11 { top: 10%; animation-duration: 6s; background: #ff5252; }
+        .line-12 { top: 20%; animation-duration: 8s; background: #ff4949; }
+        .line-13 { top: 30%; animation-duration: 7s; background: #ff5d5d; }
+        .line-14 { top: 40%; animation-duration: 9s; background: #ff3f3f; }
+        .line-15 { top: 50%; animation-duration: 6.5s; background: #ff6a6a; }
+        .line-16 { top: 60%; animation-duration: 8.5s; background: #ff4c4c; }
+        .line-17 { top: 70%; animation-duration: 7.5s; background: #ff5858; }
+        .line-18 { top: 80%; animation-duration: 9.5s; background: #ff4242; }
+        .line-19 { top: 90%; animation-duration: 6s; background: #ff7272; }
+        .line-20 { top: 95%; animation-duration: 8s; background: #ff4747; }
+
+        @keyframes moveLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .line-horizontal {
+            animation: moveHorizontal 8s infinite linear;
+        }
+
+        @keyframes moveHorizontal {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Маленькие белые и черные фигуры */
+        .small-figure {
+            position: absolute;
+            opacity: 0.12;
+            animation: floatFigure 15s infinite ease-in-out;
+        }
+
+        /* Круги */
+        .circle-white {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .circle-black {
+            width: 10px;
+            height: 10px;
+            background: #2a2a2a;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255,255,255,0.1);
+        }
+
+        /* Квадраты */
+        .square-white {
+            width: 8px;
+            height: 8px;
+            background: white;
+            transform: rotate(45deg);
+        }
+
+        .square-black {
+            width: 12px;
+            height: 12px;
+            background: #1a1a1a;
+            transform: rotate(15deg);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Треугольники */
+        .triangle-white {
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 12px solid white;
+        }
+
+        .triangle-black {
+            width: 0;
+            height: 0;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 15px solid #222;
+        }
+
+        /* Крестики */
+        .cross-white {
+            width: 10px;
+            height: 10px;
+            position: relative;
+        }
+        .cross-white::before,
+        .cross-white::after {
+            content: '';
+            position: absolute;
+            background: white;
+        }
+        .cross-white::before {
+            width: 10px;
+            height: 1px;
+            top: 4.5px;
+            left: 0;
+        }
+        .cross-white::after {
+            width: 1px;
+            height: 10px;
+            left: 4.5px;
+            top: 0;
+        }
+
+        /* Ромбы */
+        .diamond-black {
+            width: 10px;
+            height: 10px;
+            background: #222;
+            transform: rotate(45deg);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Звездочки */
+        .star-white {
+            position: relative;
+            width: 0;
+            height: 0;
+        }
+        .star-white::before {
+            content: '✦';
+            position: absolute;
+            color: white;
+            font-size: 12px;
+        }
+
+        @keyframes floatFigure {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(15px, -15px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-10px, 20px) rotate(240deg);
+            }
+        }
+
+        /* Размещение фигур - больше для мобилок */
+        @media (min-width: 768px) {
+            .figure-1 { top: 8%; left: 3%; }
+            .figure-2 { top: 15%; left: 92%; }
+            .figure-3 { top: 28%; left: 12%; }
+            .figure-4 { top: 42%; left: 88%; }
+            .figure-5 { top: 55%; left: 5%; }
+            .figure-6 { top: 68%; left: 95%; }
+            .figure-7 { top: 82%; left: 8%; }
+            .figure-8 { top: 35%; left: 78%; }
+            .figure-9 { top: 48%; left: 22%; }
+            .figure-10 { top: 72%; left: 85%; }
+            .figure-11 { top: 18%; left: 45%; }
+            .figure-12 { top: 88%; left: 62%; }
+            .figure-13 { top: 25%; left: 68%; }
+            .figure-14 { top: 62%; left: 32%; }
+            .figure-15 { top: 45%; left: 52%; }
+            .figure-16 { top: 92%; left: 18%; }
+            .figure-17 { top: 12%; left: 75%; }
+            .figure-18 { top: 78%; left: 42%; }
+            .figure-19 { top: 52%; left: 95%; }
+            .figure-20 { top: 38%; left: 8%; }
+        }
+
+        /* Шум */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wMjUiIC8+PC9zdmc+');
+            opacity: 0.1;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Основной контейнер */
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Логотип */
+        .logo-section {
+            text-align: center;
+            margin-bottom: clamp(24px, 5vw, 40px);
+            opacity: 0;
+            animation: logoAppear 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes logoAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .logo {
+            font-size: clamp(48px, 12vw, 80px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .logo-gradient {
+            background: linear-gradient(135deg, #a5f0e0, #7aa2f7, #bb9af7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(122, 162, 247, 0.3);
+        }
+
+        .logo-sub {
+            font-size: clamp(14px, 4vw, 18px);
+            color: #9aa5b5;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        /* Остальной контент */
+        .content {
+            opacity: 0;
+            animation: contentAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+
+        @keyframes contentAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Карточки */
+        .card {
+            background: rgba(18, 22, 28, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: clamp(24px, 5vw, 32px);
+            padding: clamp(20px, 4vw, 32px);
+            margin-bottom: 20px;
+            box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(122, 162, 247, 0.3);
+        }
+
+        .card-title {
+            font-size: clamp(18px, 4vw, 20px);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e2e8f0;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(122, 162, 247, 0.15);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 13px;
+            color: #7aa2f7;
+            font-weight: 500;
+            border: 1px solid rgba(122, 162, 247, 0.3);
+        }
+
+        /* Зона загрузки */
+        .upload-zone {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(122, 162, 247, 0.3);
+            border-radius: 24px;
+            padding: clamp(32px, 6vw, 48px) 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-zone:hover {
+            border-color: #7aa2f7;
+            background: rgba(122, 162, 247, 0.05);
+        }
+
+        .upload-zone svg {
+            width: clamp(48px, 8vw, 64px);
+            height: clamp(48px, 8vw, 64px);
+            color: #7aa2f7;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 20px rgba(122, 162, 247, 0.3));
+        }
+
+        .upload-zone p {
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #e2e8f0;
+        }
+
+        .upload-zone small {
+            color: #9aa5b5;
+            font-size: clamp(12px, 3vw, 14px);
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        /* Прогресс */
+        .progress {
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7aa2f7, #bb9af7);
+            width: 0%;
+            transition: width 0.3s;
+            box-shadow: 0 0 15px #7aa2f7;
+            border-radius: 3px;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: #9aa5b5;
+            font-size: 14px;
+        }
+
+        /* Сетка видео */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .video-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 18px;
+            transition: all 0.3s;
+        }
+
+        .video-item:hover {
+            border-color: #7aa2f7;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -10px rgba(122, 162, 247, 0.2);
+        }
+
+        .video-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #7aa2f7, #bb9af7);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 22px;
+        }
+
+        .video-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            word-break: break-word;
+            color: #e2e8f0;
+            font-size: 15px;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #9aa5b5;
+            font-size: 12px;
+            margin-bottom: 14px;
+        }
+
+        /* Прямая ссылка */
+        .link-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 40px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 480px) {
+            .link-container {
+                flex-direction: column;
+                background: transparent;
+                padding: 0;
+                gap: 8px;
+            }
+
+            .link-input {
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 40px;
+                padding: 12px 16px;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        .link-input {
+            flex: 1;
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            color: #7aa2f7;
+            font-size: 12px;
+            font-family: monospace;
+            outline: none;
+        }
+
+        .copy-btn {
+            padding: 10px 20px;
+            background: rgba(122, 162, 247, 0.15);
+            border: none;
+            border-radius: 40px;
+            color: #7aa2f7;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            border: 1px solid rgba(122, 162, 247, 0.2);
+        }
+
+        .copy-btn:hover {
+            background: rgba(122, 162, 247, 0.25);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        /* Кнопки действий */
+        .video-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .video-actions {
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+                flex: 1 1 calc(50% - 4px);
+            }
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            transition: all 0.2s;
+            background: rgba(255, 255, 255, 0.03);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .play-btn {
+            background: rgba(122, 162, 247, 0.1);
+            color: #7aa2f7;
+            border-color: rgba(122, 162, 247, 0.2);
+        }
+
+        .play-btn:hover {
+            background: rgba(122, 162, 247, 0.2);
+        }
+
+        .download-btn {
+            background: rgba(187, 154, 247, 0.1);
+            color: #bb9af7;
+            border-color: rgba(187, 154, 247, 0.2);
+        }
+
+        .download-btn:hover {
+            background: rgba(187, 154, 247, 0.2);
+        }
+
+        .delete-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .delete-btn:hover {
+            background: rgba(239, 68, 68, 0.15);
+        }
+
+        /* Пустое состояние */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #9aa5b5;
+        }
+
+        .empty-state svg {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+            stroke: #9aa5b5;
+        }
+
+        .empty-state p {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #e2e8f0;
+        }
+
+        .empty-state small {
+            font-size: 14px;
+        }
+
+        /* Уведомления */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            left: 20px;
+            background: rgba(18, 22, 28, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(122, 162, 247, 0.3);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Информация о хранилище */
+        .storage-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #9aa5b5;
+            flex-wrap: wrap;
+        }
+
+        .storage-bar {
+            flex: 1;
+            min-width: 120px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+        }
+
+        .storage-used {
+            height: 100%;
+            background: linear-gradient(90deg, #7aa2f7, #bb9af7);
+            border-radius: 2px;
+            width: 0%;
+            box-shadow: 0 0 8px #7aa2f7;
+        }
+
+        .clear-all {
+            color: #f87171;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            transition: all 0.2s;
+        }
+
+        .clear-all:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Ссылка на Telegram */
+        .telegram-link {
+            text-align: center;
+            margin-top: 24px;
+            padding: 12px;
+        }
+
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(122, 162, 247, 0.1);
+            color: #7aa2f7;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 15px;
+            font-weight: 500;
+            border: 1px solid rgba(122, 162, 247, 0.3);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .telegram-btn:hover {
+            background: rgba(122, 162, 247, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(122, 162, 247, 0.4);
+        }
+
+        .telegram-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #7aa2f7;
+        }
+
+        /* Адаптация для очень маленьких экранов */
+        @media (max-width: 360px) {
+            .card-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .storage-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .storage-bar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фигуры -->
+    <div class="figures">
+        <!-- Тонкие красные палочки (вертикальные) - больше и быстрее -->
+        <div class="red-line line-vertical line-1"></div>
+        <div class="red-line line-vertical line-2"></div>
+        <div class="red-line line-vertical line-3"></div>
+        <div class="red-line line-vertical line-4"></div>
+        <div class="red-line line-vertical line-5"></div>
+        <div class="red-line line-vertical line-6"></div>
+        <div class="red-line line-vertical line-7"></div>
+        <div class="red-line line-vertical line-8"></div>
+        <div class="red-line line-vertical line-9"></div>
+        <div class="red-line line-vertical line-10"></div>
+
+        <!-- Тонкие красные палочки (горизонтальные) -->
+        <div class="red-line line-horizontal line-11"></div>
+        <div class="red-line line-horizontal line-12"></div>
+        <div class="red-line line-horizontal line-13"></div>
+        <div class="red-line line-horizontal line-14"></div>
+        <div class="red-line line-horizontal line-15"></div>
+        <div class="red-line line-horizontal line-16"></div>
+        <div class="red-line line-horizontal line-17"></div>
+        <div class="red-line line-horizontal line-18"></div>
+        <div class="red-line line-horizontal line-19"></div>
+        <div class="red-line line-horizontal line-20"></div>
+
+        <!-- Маленькие белые и черные фигуры -->
+        <div class="small-figure figure-1">
+            <div class="circle-white"></div>
+        </div>
+        <div class="small-figure figure-2">
+            <div class="square-black"></div>
+        </div>
+        <div class="small-figure figure-3">
+            <div class="triangle-white"></div>
+        </div>
+        <div class="small-figure figure-4">
+            <div class="cross-white"></div>
+        </div>
+        <div class="small-figure figure-5">
+            <div class="diamond-black"></div>
+        </div>
+        <div class="small-figure figure-6">
+            <div class="circle-black"></div>
+        </div>
+        <div class="small-figure figure-7">
+            <div class="square-white"></div>
+        </div>
+        <div class="small-figure figure-8">
+            <div class="triangle-black"></div>
+        </div>
+        <div class="small-figure figure-9">
+            <div class="star-white"></div>
+        </div>
+        <div class="small-figure figure-10">
+            <div class="circle-white"></div>
+        </div>
+        <div class="small-figure figure-11">
+            <div class="square-black"></div>
+        </div>
+        <div class="small-figure figure-12">
+            <div class="triangle-white"></div>
+        </div>
+        <div class="small-figure figure-13">
+            <div class="cross-white"></div>
+        </div>
+        <div class="small-figure figure-14">
+            <div class="diamond-black"></div>
+        </div>
+        <div class="small-figure figure-15">
+            <div class="circle-black"></div>
+        </div>
+        <div class="small-figure figure-16">
+            <div class="square-white"></div>
+        </div>
+        <div class="small-figure figure-17">
+            <div class="triangle-black"></div>
+        </div>
+        <div class="small-figure figure-18">
+            <div class="star-white"></div>
+        </div>
+        <div class="small-figure figure-19">
+            <div class="circle-white"></div>
+        </div>
+        <div class="small-figure figure-20">
+            <div class="square-black"></div>
+        </div>
+    </div>
+
+    <div class="noise"></div>
+
+    <div class="container">
+        <!-- Логотип -->
+        <div class="logo-section">
+            <div class="logo">
+                <span class="logo-gradient">LogansVID</span>
+            </div>
+            <div class="logo-sub">DIRECT LINKS</div>
+        </div>
+
+        <!-- Остальной контент -->
+        <div class="content">
+            <!-- Карточка загрузки -->
+            <div class="card">
+                <div class="card-title">
+                    <span>⬆️</span>
+                    Загрузить видео
+                    <span class="badge">до 50 МБ</span>
+                </div>
+
+                <div class="upload-zone" id="uploadZone">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 16v-6m0 0l-3 3m3-3l3 3M5 16v2a2 2 0 002 2h10a2 2 0 002-2v-2" stroke-linecap="round"/>
+                    </svg>
+                    <p>Нажми или перетащи видео</p>
+                    <small>MP4, WebM, MOV, AVI (до 50 МБ)</small>
+                </div>
+                <input type="file" id="fileInput" accept="video/*">
+
+                <!-- Прогресс -->
+                <div id="progressContainer" style="display: none;">
+                    <div class="progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка с видео -->
+            <div class="card">
+                <div class="card-title">
+                    <span>🎬</span>
+                    Твои видео
+                    <span class="badge" id="videosCount">0</span>
+                </div>
+
+                <!-- Список видео -->
+                <div id="videosContainer"></div>
+
+                <!-- Пустое состояние -->
+                <div id="emptyState" class="empty-state">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M7 4v16M17 4v16M3 8h4M3 12h4M3 16h4M17 8h4M17 12h4M17 16h4" stroke-linecap="round"/>
+                    </svg>
+                    <p>Здесь пока ничего нет</p>
+                    <small>Загрузи видео и получи прямую ссылку</small>
+                </div>
+
+                <!-- Информация о хранилище -->
+                <div class="storage-info">
+                    <span>💾</span>
+                    <div class="storage-bar">
+                        <div class="storage-used" id="storageUsed" style="width: 0%"></div>
+                    </div>
+                    <span id="storageText">0 МБ / 50 МБ</span>
+                    <span class="clear-all" id="clearAllBtn" onclick="clearAllVideos()">очистить</span>
+                </div>
+            </div>
+
+            <!-- Ссылка на Telegram -->
+            <div class="telegram-link">
+                <a href="https://t.me/xyitalogansa" target="_blank" class="telegram-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.53.52-.5-.01-1.47-.28-2.19-.52-.88-.29-1.58-.44-1.52-.94.03-.26.39-.52 1.07-.79 4.06-1.77 6.77-2.94 8.13-3.5 3.87-1.6 4.68-1.88 5.2-1.89.12 0 .37.03.54.17.14.12.18.28.2.44-.02.11-.03.25-.06.39z"/>
+                    </svg>
+                    @xyitalogansa
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомление -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Константы
+        const STORAGE_KEY = 'logans_videos';
+        const MAX_SIZE = 50 * 1024 * 1024; // 50 МБ
+
+        // Загружаем видео
+        let videos = loadVideos();
+
+        // DOM элементы
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const videosContainer = document.getElementById('videosContainer');
+        const emptyState = document.getElementById('emptyState');
+        const videosCount = document.getElementById('videosCount');
+        const storageUsed = document.getElementById('storageUsed');
+        const storageText = document.getElementById('storageText');
+        const toast = document.getElementById('toast');
+
+        // Загрузка из localStorage
+        function loadVideos() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                return saved ? JSON.parse(saved) : {};
+            } catch {
+                return {};
+            }
+        }
+
+        // Сохранение
+        function saveVideos() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+                renderVideos();
+                updateStorageInfo();
+            } catch (e) {
+                if (e.name === 'QuotaExceededError') {
+                    showToast('Достигнут лимит хранилища', 'error');
+                }
+            }
+        }
+
+        // Уведомление
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Генерация ID
+        function generateId() {
+            return 'vid_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Форматирование размера
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        // Форматирование даты
+        function formatDate(timestamp) {
+            return new Date(timestamp).toLocaleString('ru', {
+                hour: '2-digit',
+                minute: '2-digit',
+                day: '2-digit',
+                month: '2-digit'
+            });
+        }
+
+        // Обновление информации о хранилище
+        function updateStorageInfo() {
+            const total = Object.values(videos).reduce((acc, v) => acc + v.size, 0);
+            const percent = (total / MAX_SIZE) * 100;
+            storageUsed.style.width = Math.min(percent, 100) + '%';
+            storageText.textContent = `${formatSize(total)} / 50 МБ`;
+        }
+
+        // Получение прямой ссылки на видео
+        function getVideoUrl(videoId) {
+            const video = videos[videoId];
+            if (!video) return '';
+
+            // Создаем Blob из base64
+            const base64Data = video.data.split(',')[1];
+            const byteCharacters = atob(base64Data);
+            const byteArrays = [];
+
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteArrays.push(byteCharacters.charCodeAt(i));
+            }
+
+            const blob = new Blob([new Uint8Array(byteArrays)], { type: video.type });
+            return URL.createObjectURL(blob);
+        }
+
+        // Обработка файла
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.style.borderColor = '#7aa2f7';
+            uploadZone.style.background = 'rgba(122, 162, 247, 0.05)';
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.style.borderColor = 'rgba(122, 162, 247, 0.3)';
+            uploadZone.style.background = 'rgba(255, 255, 255, 0.02)';
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.style.borderColor = 'rgba(122, 162, 247, 0.3)';
+            uploadZone.style.background = 'rgba(255, 255, 255, 0.02)';
+
+            const file = e.dataTransfer.files[0];
+            if (file) processFile(file);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) processFile(file);
+        });
+
+        function processFile(file) {
+            // Проверка типа
+            if (!file.type.startsWith('video/')) {
+                showToast('Это не видеофайл', 'error');
+                return;
+            }
+
+            // Проверка размера
+            if (file.size > MAX_SIZE) {
+                showToast('Файл больше 50 МБ', 'error');
+                return;
+            }
+
+            // Проверка общего размера
+            const totalSize = Object.values(videos).reduce((acc, v) => acc + v.size, 0);
+            if (totalSize + file.size > MAX_SIZE) {
+                showToast('Недостаточно места', 'error');
+                return;
+            }
+
+            // Показываем прогресс
+            progressContainer.style.display = 'block';
+
+            // Читаем файл
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const videoData = e.target.result;
+
+                // Имитация прогресса
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    progressFill.style.width = progress + '%';
+                    progressText.textContent = `Загрузка... ${progress}%`;
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+
+                        // Сохраняем видео
+                        const id = generateId();
+                        videos[id] = {
+                            id: id,
+                            name: file.name,
+                            size: file.size,
+                            type: file.type,
+                            data: videoData,
+                            created: Date.now()
+                        };
+
+                        saveVideos();
+
+                        // Прячем прогресс
+                        progressContainer.style.display = 'none';
+
+                        // Показываем видео
+                        renderVideos();
+
+                        // Уведомление
+                        showToast('Видео загружено!');
+
+                        // Сбрасываем input
+                        fileInput.value = '';
+
+                        // Копируем ссылку
+                        setTimeout(() => {
+                            const url = getVideoUrl(id);
+                            if (url) {
+                                copyToClipboard(url);
+                            }
+                        }, 100);
+                    }
+                }, 80); // Быстрее
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Копирование в буфер
+        async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                showToast('Прямая ссылка скопирована!');
+            } catch (err) {
+                // Для мобильных
+                try {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    showToast('Ссылка скопирована!');
+                } catch {
+                    showToast('Нажми и удерживай, чтобы скопировать', 'info');
+                }
+            }
+        }
+
+        // Копирование ссылки на видео
+        async function copyVideoLink(videoId) {
+            const url = getVideoUrl(videoId);
+            if (!url) return;
+
+            try {
+                await navigator.clipboard.writeText(url);
+
+                // Визуальный фидбек
+                const btn = document.querySelector(`.copy-btn[data-id="${videoId}"]`);
+                if (btn) {
+                    btn.textContent = '✓ Скопировано';
+                    btn.classList.add('copied');
+
+                    setTimeout(() => {
+                        btn.textContent = 'Копировать';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }
+
+                showToast('Ссылка скопирована');
+            } catch (err) {
+                showToast('Ошибка копирования', 'error');
+            }
+        }
+
+        // Удаление видео
+        function deleteVideo(videoId) {
+            if (confirm('Удалить видео?')) {
+                // Очищаем URL объекты
+                const video = videos[videoId];
+                if (video && video.blobUrl) {
+                    URL.revokeObjectURL(video.blobUrl);
+                }
+
+                delete videos[videoId];
+                saveVideos();
+                showToast('Видео удалено');
+            }
+        }
+
+        // Очистка всех видео
+        function clearAllVideos() {
+            if (Object.keys(videos).length === 0) return;
+
+            if (confirm('Удалить все видео?')) {
+                // Очищаем все URL объекты
+                Object.values(videos).forEach(video => {
+                    if (video.blobUrl) {
+                        URL.revokeObjectURL(video.blobUrl);
+                    }
+                });
+
+                videos = {};
+                saveVideos();
+                showToast('Все видео удалены');
+            }
+        }
+
+        // Открыть видео
+        function openVideo(videoId) {
+            const url = getVideoUrl(videoId);
+            if (url) {
+                window.open(url, '_blank');
+            }
+        }
+
+        // Скачать видео
+        function downloadVideo(videoId) {
+            const video = videos[videoId];
+            const url = getVideoUrl(videoId);
+
+            if (url && video) {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = video.name;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        }
+
+        // Отрисовка видео
+        function renderVideos() {
+            const videoArray = Object.values(videos).sort((a, b) => b.created - a.created);
+
+            if (videoArray.length === 0) {
+                videosContainer.innerHTML = '';
+                emptyState.style.display = 'block';
+                videosCount.textContent = '0';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            videosCount.textContent = videoArray.length;
+
+            let html = '<div class="videos-grid">';
+
+            videoArray.forEach(video => {
+                const videoUrl = getVideoUrl(video.id);
+
+                html += `
+                    <div class="video-item">
+                        <div class="video-icon">🎥</div>
+                        <div class="video-name">${video.name}</div>
+                        <div class="video-meta">
+                            <span>${formatSize(video.size)}</span>
+                            <span>${formatDate(video.created)}</span>
+                        </div>
+
+                        <!-- Прямая ссылка (Blob URL) -->
+                        <div class="link-container">
+                            <input type="text" class="link-input" value="${videoUrl || ''}" readonly onclick="this.select()">
+                            <button class="copy-btn" data-id="${video.id}" onclick="copyVideoLink('${video.id}')">
+                                Копировать
+                            </button>
+                        </div>
+
+                        <div class="video-actions">
+                            <button class="action-btn play-btn" onclick="openVideo('${video.id}')">
+                                ▶ Открыть
+                            </button>
+                            <button class="action-btn download-btn" onclick="downloadVideo('${video.id}')">
+                                ⬇ Скачать
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteVideo('${video.id}')">
+                                ✕ Удалить
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            videosContainer.innerHTML = html;
+        }
+
+        // Очистка старых видео (24 часа)
+        function cleanupOldVideos() {
+            const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+            let changed = false;
+
+            Object.keys(videos).forEach(id => {
+                if (videos[id].created < oneDayAgo) {
+                    delete videos[id];
+                    changed = true;
+                }
+            });
+
+            if (changed) {
+                saveVideos();
+            }
+        }
+
+        // Инициализация
+        function init() {
+            cleanupOldVideos();
+            renderVideos();
+            updateStorageInfo();
+        }
+
+        // Запуск
+        init();
+
+        // Делаем функции глобальными
+        window.copyVideoLink = copyVideoLink;
+        window.deleteVideo = deleteVideo;
+        window.clearAllVideos = clearAllVideos;
+        window.openVideo = openVideo;
+        window.downloadVideo = downloadVideo;
+    </script>
+</body>
+</html>
