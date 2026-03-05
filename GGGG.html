@@ -44,50 +44,49 @@
             background: #ff4d4d;
             box-shadow: 0 0 8px #ff4d4d, 0 0 15px rgba(255, 77, 77, 0.2);
             opacity: 0.25;
-            animation: moveLine 8s infinite linear;
         }
 
         .line-vertical {
             width: 1px;
             height: 100%;
             top: 0;
+            animation: moveVertical 7s infinite linear;
         }
 
         .line-horizontal {
             height: 1px;
             width: 100%;
             left: 0;
+            animation: moveHorizontal 7s infinite linear;
         }
 
-        .line-1 { left: 5%; animation-duration: 7s; background: #ff5e5e; }
-        .line-2 { left: 15%; animation-duration: 9s; background: #ff3b3b; }
-        .line-3 { left: 25%; animation-duration: 6s; background: #ff6b6b; }
-        .line-4 { left: 35%; animation-duration: 8.5s; background: #ff4f4f; }
-        .line-5 { left: 45%; animation-duration: 7.5s; background: #ff5a5a; }
-        .line-6 { left: 55%; animation-duration: 9.5s; background: #ff4040; }
-        .line-7 { left: 65%; animation-duration: 6.5s; background: #ff7575; }
-        .line-8 { left: 75%; animation-duration: 8s; background: #ff4545; }
-        .line-9 { left: 85%; animation-duration: 7s; background: #ff6363; }
-        .line-10 { left: 95%; animation-duration: 9s; background: #ff3d3d; }
+        /* Вертикальные линии */
+        .line-1 { left: 5%; animation-duration: 6s; background: #ff5e5e; }
+        .line-2 { left: 15%; animation-duration: 8s; background: #ff3b3b; }
+        .line-3 { left: 25%; animation-duration: 5.5s; background: #ff6b6b; }
+        .line-4 { left: 35%; animation-duration: 7.5s; background: #ff4f4f; }
+        .line-5 { left: 45%; animation-duration: 6.5s; background: #ff5a5a; }
+        .line-6 { left: 55%; animation-duration: 8.5s; background: #ff4040; }
+        .line-7 { left: 65%; animation-duration: 5s; background: #ff7575; }
+        .line-8 { left: 75%; animation-duration: 7s; background: #ff4545; }
+        .line-9 { left: 85%; animation-duration: 6s; background: #ff6363; }
+        .line-10 { left: 95%; animation-duration: 8s; background: #ff3d3d; }
+        
+        /* Горизонтальные линии */
+        .line-11 { top: 10%; animation-duration: 5.5s; background: #ff5252; }
+        .line-12 { top: 20%; animation-duration: 7s; background: #ff4949; }
+        .line-13 { top: 30%; animation-duration: 6s; background: #ff5d5d; }
+        .line-14 { top: 40%; animation-duration: 8s; background: #ff3f3f; }
+        .line-15 { top: 50%; animation-duration: 5s; background: #ff6a6a; }
+        .line-16 { top: 60%; animation-duration: 7.5s; background: #ff4c4c; }
+        .line-17 { top: 70%; animation-duration: 6.5s; background: #ff5858; }
+        .line-18 { top: 80%; animation-duration: 8.5s; background: #ff4242; }
+        .line-19 { top: 90%; animation-duration: 5.5s; background: #ff7272; }
+        .line-20 { top: 95%; animation-duration: 7s; background: #ff4747; }
 
-        .line-11 { top: 10%; animation-duration: 6s; background: #ff5252; }
-        .line-12 { top: 20%; animation-duration: 8s; background: #ff4949; }
-        .line-13 { top: 30%; animation-duration: 7s; background: #ff5d5d; }
-        .line-14 { top: 40%; animation-duration: 9s; background: #ff3f3f; }
-        .line-15 { top: 50%; animation-duration: 6.5s; background: #ff6a6a; }
-        .line-16 { top: 60%; animation-duration: 8.5s; background: #ff4c4c; }
-        .line-17 { top: 70%; animation-duration: 7.5s; background: #ff5858; }
-        .line-18 { top: 80%; animation-duration: 9.5s; background: #ff4242; }
-        .line-19 { top: 90%; animation-duration: 6s; background: #ff7272; }
-        .line-20 { top: 95%; animation-duration: 8s; background: #ff4747; }
-
-        @keyframes moveLine {
+        @keyframes moveVertical {
             0% { transform: translateY(-100%); }
             100% { transform: translateY(100%); }
-        }
-
-        .line-horizontal {
-            animation: moveHorizontal 8s infinite linear;
         }
 
         @keyframes moveHorizontal {
@@ -102,7 +101,6 @@
             animation: floatFigure 15s infinite ease-in-out;
         }
 
-        /* Круги */
         .circle-white {
             width: 6px;
             height: 6px;
@@ -118,7 +116,6 @@
             box-shadow: 0 0 8px rgba(255,255,255,0.1);
         }
 
-        /* Квадраты */
         .square-white {
             width: 8px;
             height: 8px;
@@ -134,7 +131,6 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Треугольники */
         .triangle-white {
             width: 0;
             height: 0;
@@ -151,7 +147,6 @@
             border-bottom: 15px solid #222;
         }
 
-        /* Крестики */
         .cross-white {
             width: 10px;
             height: 10px;
@@ -176,7 +171,6 @@
             top: 0;
         }
 
-        /* Ромбы */
         .diamond-black {
             width: 10px;
             height: 10px;
@@ -185,7 +179,6 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Звездочки */
         .star-white {
             position: relative;
             width: 0;
@@ -210,29 +203,27 @@
             }
         }
 
-        /* Размещение фигур - больше для мобилок */
-        @media (min-width: 768px) {
-            .figure-1 { top: 8%; left: 3%; }
-            .figure-2 { top: 15%; left: 92%; }
-            .figure-3 { top: 28%; left: 12%; }
-            .figure-4 { top: 42%; left: 88%; }
-            .figure-5 { top: 55%; left: 5%; }
-            .figure-6 { top: 68%; left: 95%; }
-            .figure-7 { top: 82%; left: 8%; }
-            .figure-8 { top: 35%; left: 78%; }
-            .figure-9 { top: 48%; left: 22%; }
-            .figure-10 { top: 72%; left: 85%; }
-            .figure-11 { top: 18%; left: 45%; }
-            .figure-12 { top: 88%; left: 62%; }
-            .figure-13 { top: 25%; left: 68%; }
-            .figure-14 { top: 62%; left: 32%; }
-            .figure-15 { top: 45%; left: 52%; }
-            .figure-16 { top: 92%; left: 18%; }
-            .figure-17 { top: 12%; left: 75%; }
-            .figure-18 { top: 78%; left: 42%; }
-            .figure-19 { top: 52%; left: 95%; }
-            .figure-20 { top: 38%; left: 8%; }
-        }
+        /* Размещение фигур */
+        .figure-1 { top: 8%; left: 3%; animation-delay: 0s; }
+        .figure-2 { top: 15%; left: 92%; animation-delay: 1s; }
+        .figure-3 { top: 28%; left: 12%; animation-delay: 2s; }
+        .figure-4 { top: 42%; left: 88%; animation-delay: 3s; }
+        .figure-5 { top: 55%; left: 5%; animation-delay: 4s; }
+        .figure-6 { top: 68%; left: 95%; animation-delay: 5s; }
+        .figure-7 { top: 82%; left: 8%; animation-delay: 6s; }
+        .figure-8 { top: 35%; left: 78%; animation-delay: 7s; }
+        .figure-9 { top: 48%; left: 22%; animation-delay: 8s; }
+        .figure-10 { top: 72%; left: 85%; animation-delay: 9s; }
+        .figure-11 { top: 18%; left: 45%; animation-delay: 10s; }
+        .figure-12 { top: 88%; left: 62%; animation-delay: 11s; }
+        .figure-13 { top: 25%; left: 68%; animation-delay: 12s; }
+        .figure-14 { top: 62%; left: 32%; animation-delay: 13s; }
+        .figure-15 { top: 45%; left: 52%; animation-delay: 14s; }
+        .figure-16 { top: 92%; left: 18%; animation-delay: 15s; }
+        .figure-17 { top: 12%; left: 75%; animation-delay: 16s; }
+        .figure-18 { top: 78%; left: 42%; animation-delay: 17s; }
+        .figure-19 { top: 52%; left: 95%; animation-delay: 18s; }
+        .figure-20 { top: 38%; left: 8%; animation-delay: 19s; }
 
         /* Шум */
         .noise {
@@ -496,7 +487,7 @@
                 padding: 0;
                 gap: 8px;
             }
-
+            
             .link-input {
                 background: rgba(0, 0, 0, 0.3);
                 border-radius: 40px;
@@ -550,7 +541,7 @@
             .video-actions {
                 flex-wrap: wrap;
             }
-
+            
             .action-btn {
                 flex: 1 1 calc(50% - 4px);
             }
@@ -735,19 +726,18 @@
             fill: #7aa2f7;
         }
 
-        /* Адаптация для очень маленьких экранов */
         @media (max-width: 360px) {
             .card-title {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 6px;
             }
-
+            
             .storage-info {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
+            
             .storage-bar {
                 width: 100%;
             }
@@ -757,7 +747,7 @@
 <body>
     <!-- Фигуры -->
     <div class="figures">
-        <!-- Тонкие красные палочки (вертикальные) - больше и быстрее -->
+        <!-- Тонкие красные палочки -->
         <div class="red-line line-vertical line-1"></div>
         <div class="red-line line-vertical line-2"></div>
         <div class="red-line line-vertical line-3"></div>
@@ -768,8 +758,7 @@
         <div class="red-line line-vertical line-8"></div>
         <div class="red-line line-vertical line-9"></div>
         <div class="red-line line-vertical line-10"></div>
-
-        <!-- Тонкие красные палочки (горизонтальные) -->
+        
         <div class="red-line line-horizontal line-11"></div>
         <div class="red-line line-horizontal line-12"></div>
         <div class="red-line line-horizontal line-13"></div>
@@ -780,70 +769,30 @@
         <div class="red-line line-horizontal line-18"></div>
         <div class="red-line line-horizontal line-19"></div>
         <div class="red-line line-horizontal line-20"></div>
-
-        <!-- Маленькие белые и черные фигуры -->
-        <div class="small-figure figure-1">
-            <div class="circle-white"></div>
-        </div>
-        <div class="small-figure figure-2">
-            <div class="square-black"></div>
-        </div>
-        <div class="small-figure figure-3">
-            <div class="triangle-white"></div>
-        </div>
-        <div class="small-figure figure-4">
-            <div class="cross-white"></div>
-        </div>
-        <div class="small-figure figure-5">
-            <div class="diamond-black"></div>
-        </div>
-        <div class="small-figure figure-6">
-            <div class="circle-black"></div>
-        </div>
-        <div class="small-figure figure-7">
-            <div class="square-white"></div>
-        </div>
-        <div class="small-figure figure-8">
-            <div class="triangle-black"></div>
-        </div>
-        <div class="small-figure figure-9">
-            <div class="star-white"></div>
-        </div>
-        <div class="small-figure figure-10">
-            <div class="circle-white"></div>
-        </div>
-        <div class="small-figure figure-11">
-            <div class="square-black"></div>
-        </div>
-        <div class="small-figure figure-12">
-            <div class="triangle-white"></div>
-        </div>
-        <div class="small-figure figure-13">
-            <div class="cross-white"></div>
-        </div>
-        <div class="small-figure figure-14">
-            <div class="diamond-black"></div>
-        </div>
-        <div class="small-figure figure-15">
-            <div class="circle-black"></div>
-        </div>
-        <div class="small-figure figure-16">
-            <div class="square-white"></div>
-        </div>
-        <div class="small-figure figure-17">
-            <div class="triangle-black"></div>
-        </div>
-        <div class="small-figure figure-18">
-            <div class="star-white"></div>
-        </div>
-        <div class="small-figure figure-19">
-            <div class="circle-white"></div>
-        </div>
-        <div class="small-figure figure-20">
-            <div class="square-black"></div>
-        </div>
+        
+        <!-- Маленькие фигуры -->
+        <div class="small-figure figure-1"><div class="circle-white"></div></div>
+        <div class="small-figure figure-2"><div class="square-black"></div></div>
+        <div class="small-figure figure-3"><div class="triangle-white"></div></div>
+        <div class="small-figure figure-4"><div class="cross-white"></div></div>
+        <div class="small-figure figure-5"><div class="diamond-black"></div></div>
+        <div class="small-figure figure-6"><div class="circle-black"></div></div>
+        <div class="small-figure figure-7"><div class="square-white"></div></div>
+        <div class="small-figure figure-8"><div class="triangle-black"></div></div>
+        <div class="small-figure figure-9"><div class="star-white"></div></div>
+        <div class="small-figure figure-10"><div class="circle-white"></div></div>
+        <div class="small-figure figure-11"><div class="square-black"></div></div>
+        <div class="small-figure figure-12"><div class="triangle-white"></div></div>
+        <div class="small-figure figure-13"><div class="cross-white"></div></div>
+        <div class="small-figure figure-14"><div class="diamond-black"></div></div>
+        <div class="small-figure figure-15"><div class="circle-black"></div></div>
+        <div class="small-figure figure-16"><div class="square-white"></div></div>
+        <div class="small-figure figure-17"><div class="triangle-black"></div></div>
+        <div class="small-figure figure-18"><div class="star-white"></div></div>
+        <div class="small-figure figure-19"><div class="circle-white"></div></div>
+        <div class="small-figure figure-20"><div class="square-black"></div></div>
     </div>
-
+    
     <div class="noise"></div>
 
     <div class="container">
@@ -916,9 +865,9 @@
                 </div>
             </div>
 
-            <!-- Ссылка на Telegram -->
+            <!-- Ссылка на Telegram - ИСПРАВЛЕНО -->
             <div class="telegram-link">
-                <a href="https://t.me/xyitalogansa" target="_blank" class="telegram-btn">
+                <a href="https://t.me/xyitalogansa" target="_blank" rel="noopener noreferrer" class="telegram-btn">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.53.52-.5-.01-1.47-.28-2.19-.52-.88-.29-1.58-.44-1.52-.94.03-.26.39-.52 1.07-.79 4.06-1.77 6.77-2.94 8.13-3.5 3.87-1.6 4.68-1.88 5.2-1.89.12 0 .37.03.54.17.14.12.18.28.2.44-.02.11-.03.25-.06.39z"/>
                     </svg>
@@ -935,10 +884,10 @@
         // Константы
         const STORAGE_KEY = 'logans_videos';
         const MAX_SIZE = 50 * 1024 * 1024; // 50 МБ
-
+        
         // Загружаем видео
         let videos = loadVideos();
-
+        
         // DOM элементы
         const uploadZone = document.getElementById('uploadZone');
         const fileInput = document.getElementById('fileInput');
@@ -1018,18 +967,22 @@
         function getVideoUrl(videoId) {
             const video = videos[videoId];
             if (!video) return '';
-
-            // Создаем Blob из base64
-            const base64Data = video.data.split(',')[1];
-            const byteCharacters = atob(base64Data);
-            const byteArrays = [];
-
-            for (let i = 0; i < byteCharacters.length; i++) {
-                byteArrays.push(byteCharacters.charCodeAt(i));
+            
+            try {
+                const base64Data = video.data.split(',')[1];
+                const byteCharacters = atob(base64Data);
+                const byteArrays = [];
+                
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteArrays.push(byteCharacters.charCodeAt(i));
+                }
+                
+                const blob = new Blob([new Uint8Array(byteArrays)], { type: video.type });
+                return URL.createObjectURL(blob);
+            } catch (e) {
+                console.error('Error creating blob:', e);
+                return '';
             }
-
-            const blob = new Blob([new Uint8Array(byteArrays)], { type: video.type });
-            return URL.createObjectURL(blob);
         }
 
         // Обработка файла
@@ -1050,7 +1003,7 @@
             e.preventDefault();
             uploadZone.style.borderColor = 'rgba(122, 162, 247, 0.3)';
             uploadZone.style.background = 'rgba(255, 255, 255, 0.02)';
-
+            
             const file = e.dataTransfer.files[0];
             if (file) processFile(file);
         });
@@ -1082,23 +1035,23 @@
 
             // Показываем прогресс
             progressContainer.style.display = 'block';
-
+            
             // Читаем файл
             const reader = new FileReader();
-
+            
             reader.onload = function(e) {
                 const videoData = e.target.result;
-
+                
                 // Имитация прогресса
                 let progress = 0;
                 const interval = setInterval(() => {
                     progress += 10;
                     progressFill.style.width = progress + '%';
                     progressText.textContent = `Загрузка... ${progress}%`;
-
+                    
                     if (progress >= 100) {
                         clearInterval(interval);
-
+                        
                         // Сохраняем видео
                         const id = generateId();
                         videos[id] = {
@@ -1109,21 +1062,21 @@
                             data: videoData,
                             created: Date.now()
                         };
-
+                        
                         saveVideos();
-
+                        
                         // Прячем прогресс
                         progressContainer.style.display = 'none';
-
+                        
                         // Показываем видео
                         renderVideos();
-
+                        
                         // Уведомление
                         showToast('Видео загружено!');
-
+                        
                         // Сбрасываем input
                         fileInput.value = '';
-
+                        
                         // Копируем ссылку
                         setTimeout(() => {
                             const url = getVideoUrl(id);
@@ -1132,9 +1085,9 @@
                             }
                         }, 100);
                     }
-                }, 80); // Быстрее
+                }, 80);
             };
-
+            
             reader.readAsDataURL(file);
         }
 
@@ -1163,22 +1116,21 @@
         async function copyVideoLink(videoId) {
             const url = getVideoUrl(videoId);
             if (!url) return;
-
+            
             try {
                 await navigator.clipboard.writeText(url);
-
-                // Визуальный фидбек
+                
                 const btn = document.querySelector(`.copy-btn[data-id="${videoId}"]`);
                 if (btn) {
                     btn.textContent = '✓ Скопировано';
                     btn.classList.add('copied');
-
+                    
                     setTimeout(() => {
                         btn.textContent = 'Копировать';
                         btn.classList.remove('copied');
                     }, 2000);
                 }
-
+                
                 showToast('Ссылка скопирована');
             } catch (err) {
                 showToast('Ошибка копирования', 'error');
@@ -1188,12 +1140,6 @@
         // Удаление видео
         function deleteVideo(videoId) {
             if (confirm('Удалить видео?')) {
-                // Очищаем URL объекты
-                const video = videos[videoId];
-                if (video && video.blobUrl) {
-                    URL.revokeObjectURL(video.blobUrl);
-                }
-
                 delete videos[videoId];
                 saveVideos();
                 showToast('Видео удалено');
@@ -1203,15 +1149,8 @@
         // Очистка всех видео
         function clearAllVideos() {
             if (Object.keys(videos).length === 0) return;
-
+            
             if (confirm('Удалить все видео?')) {
-                // Очищаем все URL объекты
-                Object.values(videos).forEach(video => {
-                    if (video.blobUrl) {
-                        URL.revokeObjectURL(video.blobUrl);
-                    }
-                });
-
                 videos = {};
                 saveVideos();
                 showToast('Все видео удалены');
@@ -1230,7 +1169,7 @@
         function downloadVideo(videoId) {
             const video = videos[videoId];
             const url = getVideoUrl(videoId);
-
+            
             if (url && video) {
                 const a = document.createElement('a');
                 a.href = url;
@@ -1244,7 +1183,7 @@
         // Отрисовка видео
         function renderVideos() {
             const videoArray = Object.values(videos).sort((a, b) => b.created - a.created);
-
+            
             if (videoArray.length === 0) {
                 videosContainer.innerHTML = '';
                 emptyState.style.display = 'block';
@@ -1254,12 +1193,12 @@
 
             emptyState.style.display = 'none';
             videosCount.textContent = videoArray.length;
-
+            
             let html = '<div class="videos-grid">';
-
+            
             videoArray.forEach(video => {
                 const videoUrl = getVideoUrl(video.id);
-
+                
                 html += `
                     <div class="video-item">
                         <div class="video-icon">🎥</div>
@@ -1268,15 +1207,14 @@
                             <span>${formatSize(video.size)}</span>
                             <span>${formatDate(video.created)}</span>
                         </div>
-
-                        <!-- Прямая ссылка (Blob URL) -->
+                        
                         <div class="link-container">
                             <input type="text" class="link-input" value="${videoUrl || ''}" readonly onclick="this.select()">
                             <button class="copy-btn" data-id="${video.id}" onclick="copyVideoLink('${video.id}')">
                                 Копировать
                             </button>
                         </div>
-
+                        
                         <div class="video-actions">
                             <button class="action-btn play-btn" onclick="openVideo('${video.id}')">
                                 ▶ Открыть
@@ -1291,7 +1229,7 @@
                     </div>
                 `;
             });
-
+            
             html += '</div>';
             videosContainer.innerHTML = html;
         }
@@ -1300,14 +1238,14 @@
         function cleanupOldVideos() {
             const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
             let changed = false;
-
+            
             Object.keys(videos).forEach(id => {
                 if (videos[id].created < oneDayAgo) {
                     delete videos[id];
                     changed = true;
                 }
             });
-
+            
             if (changed) {
                 saveVideos();
             }
